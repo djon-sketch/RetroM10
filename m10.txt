@@ -1,0 +1,250 @@
+-- GUI RetroM10 Full Version (Server + Admin Panel)
+local player = game.Players.LocalPlayer
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "RetroM10"
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Frame utama
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 400, 0, 500)
+frame.Position = UDim2.new(0.5, -200, 0.5, -250)
+frame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
+
+-- Outline ungu
+local uiStroke = Instance.new("UIStroke")
+uiStroke.Thickness = 2
+uiStroke.Color = Color3.fromRGB(180, 0, 255)
+uiStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+uiStroke.Parent = frame
+
+frame.Active = true
+frame.Draggable = true
+
+-- Judul
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 50)
+title.BackgroundTransparency = 1
+title.Font = Enum.Font.GothamBold
+title.TextSize = 22
+title.Text = "RetroM10"
+title.TextColor3 = Color3.fromRGB(180, 0, 255)
+title.Parent = frame
+
+-- Tab buttons container
+local tabFrame = Instance.new("Frame")
+tabFrame.Size = UDim2.new(1, 0, 0, 40)
+tabFrame.Position = UDim2.new(0, 0, 0, 50)
+tabFrame.BackgroundTransparency = 1
+tabFrame.Parent = frame
+
+-- Tombol Page "Server"
+local serverPageBtn = Instance.new("TextButton")
+serverPageBtn.Size = UDim2.new(0.45, -5, 1, 0)
+serverPageBtn.Position = UDim2.new(0, 5, 0, 0)
+serverPageBtn.BackgroundColor3 = Color3.fromRGB(0,0,0)
+serverPageBtn.TextColor3 = Color3.fromRGB(255,255,255)
+serverPageBtn.Text = "Server"
+serverPageBtn.Font = Enum.Font.Gotham
+serverPageBtn.TextSize = 16
+serverPageBtn.Parent = tabFrame
+
+local strokeBtn1 = Instance.new("UIStroke")
+strokeBtn1.Thickness = 2
+strokeBtn1.Color = Color3.fromRGB(180, 0, 255)
+strokeBtn1.Parent = serverPageBtn
+
+-- Tombol Page "Admin Panel"
+local adminPageBtn = Instance.new("TextButton")
+adminPageBtn.Size = UDim2.new(0.45, -5, 1, 0)
+adminPageBtn.Position = UDim2.new(0.5, 0, 0, 0)
+adminPageBtn.BackgroundColor3 = Color3.fromRGB(0,0,0)
+adminPageBtn.TextColor3 = Color3.fromRGB(255,255,255)
+adminPageBtn.Text = "Admin Panel"
+adminPageBtn.Font = Enum.Font.Gotham
+adminPageBtn.TextSize = 16
+adminPageBtn.Parent = tabFrame
+
+local strokeBtn2 = Instance.new("UIStroke")
+strokeBtn2.Thickness = 2
+strokeBtn2.Color = Color3.fromRGB(180, 0, 255)
+strokeBtn2.Parent = adminPageBtn
+
+-- Container Page Server
+local serverPage = Instance.new("Frame")
+serverPage.Size = UDim2.new(1, 0, 1, -100)
+serverPage.Position = UDim2.new(0, 0, 0, 90)
+serverPage.BackgroundTransparency = 1
+serverPage.Parent = frame
+
+local layoutServer = Instance.new("UIListLayout")
+layoutServer.Padding = UDim.new(0,10)
+layoutServer.FillDirection = Enum.FillDirection.Vertical
+layoutServer.HorizontalAlignment = Enum.HorizontalAlignment.Center
+layoutServer.SortOrder = Enum.SortOrder.LayoutOrder
+layoutServer.Parent = serverPage
+
+-- Container Page Admin Panel
+local adminPage = Instance.new("Frame")
+adminPage.Size = UDim2.new(1, 0, 1, -100)
+adminPage.Position = UDim2.new(0, 0, 0, 90)
+adminPage.BackgroundTransparency = 1
+adminPage.Visible = false -- default hidden
+adminPage.Parent = frame
+
+local layoutAdmin = Instance.new("UIListLayout")
+layoutAdmin.Padding = UDim.new(0,10)
+layoutAdmin.FillDirection = Enum.FillDirection.Vertical
+layoutAdmin.HorizontalAlignment = Enum.HorizontalAlignment.Center
+layoutAdmin.SortOrder = Enum.SortOrder.LayoutOrder
+layoutAdmin.Parent = adminPage
+
+-- Fungsi buat tombol
+local function createButton(parent, name, callback)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(0.85, 0, 0, 40)
+    btn.Text = name
+    btn.BackgroundColor3 = Color3.fromRGB(0,0,0)
+    btn.TextColor3 = Color3.fromRGB(255,255,255)
+    btn.BorderSizePixel = 0
+    btn.Font = Enum.Font.Gotham
+    btn.TextSize = 16
+    btn.Parent = parent
+
+    local stroke = Instance.new("UIStroke")
+    stroke.Thickness = 2
+    stroke.Color = Color3.fromRGB(180,0,255)
+    stroke.Parent = btn
+
+    if callback then
+        btn.MouseButton1Click:Connect(callback)
+    end
+    return btn
+end
+
+-- Fungsi buat TextBox
+local function createTextBox(parent, placeholder)
+    local box = Instance.new("TextBox")
+    box.Size = UDim2.new(0.85, 0, 0, 40)
+    box.PlaceholderText = placeholder
+    box.BackgroundColor3 = Color3.fromRGB(0,0,0)
+    box.TextColor3 = Color3.fromRGB(255,255,255)
+    box.BorderSizePixel = 0
+    box.Font = Enum.Font.Gotham
+    box.TextSize = 16
+    box.Parent = parent
+
+    local stroke = Instance.new("UIStroke")
+    stroke.Thickness = 2
+    stroke.Color = Color3.fromRGB(180,0,255)
+    stroke.Parent = box
+
+    return box
+end
+
+-- Tombol-tombol Page Server
+createButton(serverPage, "1x1x1x1 Revenge (Emergency)", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/djon-sketch/OnebyoneRevenge/refs/heads/main/onebyone.txt", true))()
+end)
+createButton(serverPage, "Green All", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/djon-sketch/Green-All/main/green.txt", true))()
+end)
+createButton(serverPage, "Illuminati", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/djon-sketch/illucat/refs/heads/main/ill.txt", true))()
+end)
+createButton(serverPage, "Silly Cat!", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/djon-sketch/Silly-cat/refs/heads/main/silly.txt", true))()
+end)
+createButton(serverPage, "Rainbow SelectionBox(aP)", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/djon-sketch/SelectionBox/refs/heads/main/slct.txt", true))()
+end)
+createButton(serverPage, "ForceField(LP)", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/djon-sketch/ForceFieldz/refs/heads/main/ff.txt", true))()
+end)
+createButton(serverPage, "OOFPocalyse", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/djon-sketch/Pocalyse/refs/heads/main/oofpocalyse.txt", true))()
+end)
+
+-- Tombol & TextBox Admin Panel
+local ffBox = createTextBox(adminPage, "Username")
+createButton(adminPage, "ForceField", function()
+    local user = ffBox.Text
+    if user ~= "" then
+        local target = game.Players:FindFirstChild(user)
+        if target then
+            local ff = Instance.new("ForceField")
+            ff.Parent = target.Character or target.CharacterAdded:Wait()
+        end
+    end
+end)
+
+local kickBox = createTextBox(adminPage, "Username")
+createButton(adminPage, "Kick", function()
+    local user = kickBox.Text
+    if user ~= "" then
+        local target = game.Players:FindFirstChild(user)
+        if target then
+            target:Kick("Kicked by Admin Panel")
+        end
+    end
+end)
+
+local banBox = createTextBox(adminPage, "Username")
+createButton(adminPage, "Ban", function()
+    local user = banBox.Text
+    if user ~= "" then
+        local target = game.Players:FindFirstChild(user)
+        if target then
+            target:Kick("Banned by Admin Panel")
+        end
+    end
+end)
+
+local hintBox = createTextBox(adminPage, "Text")
+createButton(adminPage, "Hint", function()
+    local txt = hintBox.Text
+    if txt ~= "" then
+        local h = Instance.new("Hint")
+        h.Text = txt
+        h.Parent = workspace
+    end
+end)
+
+createButton(adminPage, "Remove Hint", function()
+    for _,v in pairs(workspace:GetChildren()) do
+        if v:IsA("Hint") then
+            v:Destroy()
+        end
+    end
+end)
+
+local msgBox = createTextBox(adminPage, "Text")
+createButton(adminPage, "Message", function()
+    local txt = msgBox.Text
+    if txt ~= "" then
+        local m = Instance.new("Message")
+        m.Text = txt
+        m.Parent = workspace
+        task.delay(5, function() m:Destroy() end)
+    end
+end)
+
+createButton(adminPage, "Shutdown", function()
+    for _,v in pairs(game.Players:GetPlayers()) do
+        if v ~= player then
+            v:Kick("Server Shutdown by Admin Panel")
+        end
+    end
+end)
+
+-- Switch Pages
+serverPageBtn.MouseButton1Click:Connect(function()
+    serverPage.Visible = true
+    adminPage.Visible = false
+end)
+adminPageBtn.MouseButton1Click:Connect(function()
+    serverPage.Visible = false
+    adminPage.Visible = true
+end)

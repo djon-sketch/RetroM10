@@ -1,4 +1,4 @@
--- GUI RetroM10 Full Version (Server + Admin Panel)
+-- GUI RetroM10 Full Version
 local player = game.Players.LocalPlayer
 
 local screenGui = Instance.new("ScreenGui")
@@ -165,6 +165,12 @@ createButton(serverPage, "ForceField(LP)", function()
 end)
 createButton(serverPage, "OOFPocalyse", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/djon-sketch/Pocalyse/refs/heads/main/oofpocalyse.txt", true))()
+end)
+createButton(serverPage, "Red Reign (meme)", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/djon-sketch/redreign/refs/heads/main/redrgn.txt", true))()
+end)
+createButton(serverPage, "Mario Exe", function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Mario-exe-scary-mario-script-by-g00byd0lan-42167", true))()
 end)
 
 -- Tombol & TextBox Admin Panel

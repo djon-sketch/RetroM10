@@ -1,8 +1,5 @@
--- RetroM10 Full GUI with Grid & ResetOnSpawn
+-- RetroM10 Final Grid GUI
 local player = game.Players.LocalPlayer
-player.CharacterAdded:Connect(function()
-    -- ResetOnSpawn false
-end)
 
 -- ScreenGui
 local screenGui = Instance.new("ScreenGui")
@@ -44,7 +41,7 @@ tabFrame.Position = UDim2.new(0,0,0,50)
 tabFrame.BackgroundTransparency = 1
 tabFrame.Parent = frame
 
--- Server & Admin Buttons
+-- Create Tab Button
 local function createTabButton(parent, text)
     local btn = Instance.new("TextButton")
     btn.Size = UDim2.new(0.45,-5,1,0)
@@ -70,12 +67,13 @@ adminPageBtn.Position = UDim2.new(0.5,0,0,0)
 -- Create Button
 local function createButton(parent,text,callback)
     local btn = Instance.new("TextButton")
-    btn.Size = UDim2.new(0,120,0,40)
+    btn.Size = UDim2.new(0,120,0,50)
     btn.BackgroundColor3 = Color3.fromRGB(0,0,0)
     btn.TextColor3 = Color3.fromRGB(255,255,255)
     btn.Text = text
     btn.Font = Enum.Font.Gotham
-    btn.TextSize = 16
+    btn.TextScaled = true
+    btn.TextWrapped = true
     btn.BorderSizePixel = 0
     btn.Parent = parent
     local stroke = Instance.new("UIStroke")
@@ -89,13 +87,14 @@ end
 -- TextBox
 local function createTextBox(parent,placeholder)
     local box = Instance.new("TextBox")
-    box.Size = UDim2.new(0,120,0,40)
+    box.Size = UDim2.new(0,120,0,50)
     box.PlaceholderText = placeholder
     box.BackgroundColor3 = Color3.fromRGB(0,0,0)
     box.TextColor3 = Color3.fromRGB(255,255,255)
+    box.TextScaled = true
+    box.TextWrapped = true
     box.BorderSizePixel = 0
     box.Font = Enum.Font.Gotham
-    box.TextSize = 16
     box.Parent = parent
     local stroke = Instance.new("UIStroke")
     stroke.Thickness = 2
@@ -114,7 +113,7 @@ serverPage.ScrollBarThickness = 8
 serverPage.Parent = frame
 
 local gridServer = Instance.new("UIGridLayout")
-gridServer.CellSize = UDim2.new(0,120,0,40)
+gridServer.CellSize = UDim2.new(0,120,0,50)
 gridServer.CellPadding = UDim2.new(0,10,0,10)
 gridServer.FillDirection = Enum.FillDirection.Horizontal
 gridServer.HorizontalAlignment = Enum.HorizontalAlignment.Center
@@ -131,14 +130,14 @@ adminPage.Visible = false
 adminPage.Parent = frame
 
 local gridAdmin = Instance.new("UIGridLayout")
-gridAdmin.CellSize = UDim2.new(0,120,0,40)
+gridAdmin.CellSize = UDim2.new(0,120,0,50)
 gridAdmin.CellPadding = UDim2.new(0,10,0,10)
 gridAdmin.FillDirection = Enum.FillDirection.Horizontal
 gridAdmin.HorizontalAlignment = Enum.HorizontalAlignment.Center
 gridAdmin.SortOrder = Enum.SortOrder.LayoutOrder
 gridAdmin.Parent = adminPage
 
--- Tombol Server
+-- Server Buttons
 local serverScripts = {
     {"1x1x1x1 Revenge (Emergency)","https://raw.githubusercontent.com/djon-sketch/OnebyoneRevenge/refs/heads/main/onebyone.txt"},
     {"Green All","https://raw.githubusercontent.com/djon-sketch/Green-All/main/green.txt"},
